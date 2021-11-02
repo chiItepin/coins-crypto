@@ -1,5 +1,7 @@
 # coins
 
+<img src="https://i.imgur.com/pj8J0lQ.png" />
+
 ## Project setup
 ```
 npm install

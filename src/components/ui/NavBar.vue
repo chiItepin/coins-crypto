@@ -10,13 +10,15 @@
         />
       </router-link>
       <va-spacer />
-      <va-button
-        color="#fff"
-        flat
-        :rounded="false"
-      >
-        Login
-      </va-button>
+      <router-link to="/coins">
+        <va-button
+          color="#fff"
+          flat
+          :rounded="false"
+        >
+          Coins
+        </va-button>
+      </router-link>
       <va-button-dropdown
         size="small"
         flat
@@ -34,6 +36,6 @@
 nav
    height: $space-l
    .navbar
-         height: $space-l
-         box-shadow: 0 2px 4px rgb(215 215 215)
+        height: $space-l
+        box-shadow: 0 2px 4px rgb(215 215 215)
 </style>

@@ -7,6 +7,7 @@ const headers = {
 
 const api = {
   getGlobalData: () => axios.get(`${baseUrl}global`, headers),
+  listCoins: () => axios.get(`${baseUrl}coins/list`, headers),
 };
 
 export default api;
