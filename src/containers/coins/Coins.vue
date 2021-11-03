@@ -21,43 +21,49 @@
       </div>
     </div>
 
-    <div class="table-container">
-      <table class="va-table va-table--hoverable va-table--striped">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Symbol</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="coin in filteredCoins"
-            :key="coin.id"
-          >
-            <td>{{ coin.id }}</td>
-            <td>{{ coin.symbol }}</td>
-            <td>{{ coin.name }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div>
+      <ag-grid-vue
+        class="ag-theme-vuestic"
+        style="width: 100%; height: 100%;"
+        :column-defs="columnDefs"
+        :row-data="filteredCoins"
+        :modules="modules"
+        :pagination-page-size="50"
+        :pagination="true"
+        @cell-clicked="onCoinCellClicked"
+      />
     </div>
   </section>
 </template>
 
 <script>
-import api from '../api';
 import { onMounted, getCurrentInstance, ref, computed } from 'vue';
+import { AgGridVue } from '@ag-grid-community/vue3';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
+import api from '../../api';
 
 export default {
+  components: { AgGridVue },
   setup() {
     const vaToast = getCurrentInstance().appContext.config.globalProperties.$vaToast;
+    const router = getCurrentInstance().appContext.config.globalProperties.$router;
+    const modules = [ClientSideRowModelModule];
+
+    const columnDefs = [
+      { field: 'id', headerName: 'Id' },
+      { field: 'symbol', headerName: 'Symbol', sortable: true },
+      { field: 'name', headerName: 'Name', sortable: true }
+    ];
 
     const coins = ref([]);
     const searchValue = ref('');
     const isLoaded = ref(false);
     const filteredCoins = computed(() => coins.value.filter((coin) => coin.symbol.includes(searchValue.value.toLowerCase())
       || coin.name.toLowerCase().includes(searchValue.value.toLowerCase())));
+
+    const onCoinCellClicked = (event) => {
+      router.push(`/coins/${event.data.id}`);
+    };
 
     onMounted(() => {
       api.listCoins()
@@ -78,6 +84,9 @@ export default {
       isLoaded,
       searchValue,
       filteredCoins,
+      modules,
+      columnDefs,
+      onCoinCellClicked,
     };
   },
 };

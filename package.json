@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vuestic/ag-grid-theme": "^1.0.3",
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
