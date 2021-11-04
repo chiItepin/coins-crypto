@@ -1,5 +1,8 @@
 # coins
+### Coins Categories
+<img src="https://i.imgur.com/HxynYxl.png" />
 
+### Coins
 <img src="https://i.imgur.com/pj8J0lQ.png" />
 
 ## Project setup

@@ -25,7 +25,12 @@
         color="#fff"
         icon="menu"
       >
-        Content
+        <router-link
+          to="/coins/categories"
+          class="link"
+        >
+          Categories
+        </router-link>
       </va-button-dropdown>
     </va-app-bar>
   </nav>

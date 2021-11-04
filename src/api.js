@@ -9,6 +9,7 @@ const api = {
   getGlobalData: () => axios.get(`${baseUrl}global`, headers),
   listCoins: () => axios.get(`${baseUrl}coins/list`, headers),
   getCoin: (id) => axios.get(`${baseUrl}coins/${id}`, headers),
+  getCoinCategories: () => axios.get(`${baseUrl}coins/categories?order=market_cap_desc`, headers),
 };
 
 export default api;
